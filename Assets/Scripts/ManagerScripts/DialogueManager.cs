@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
 	public GameObject dialogueArrow;
 	public Animator dialoguePaneAnimator;
 	public TextMeshProUGUI textDisplay;
+	[SerializeField] private TextMeshProUGUI _nameDisplay;
 	[SerializeField] private EntityAudio _dialogueAudio;
 	public Queue<string> sentences = new Queue<string>();
 	public float typingSpeed;
@@ -35,21 +36,24 @@ public class DialogueManager : MonoBehaviour
 
 	public void NextSentence()
 	{
-		if (sentenceFinished == true)
+		if (!_hasDialogueEnded)
 		{
-			isDialogueTyping = true;
-			sentenceFinished = false;
-			//dialogueArrow.SetActive(false);
-			DisplayNextSentence(1);
-		}
-		else if (isDialogueTyping == true)
-		{
-			StopAllCoroutines();
-			isDialogueTyping = false;
-			sentenceFinished = true;
-			textDisplay.text = "";
-			textDisplay.text = currentSentence;
-			//dialogueArrow.SetActive(true);
+			if (sentenceFinished == true)
+			{
+				isDialogueTyping = true;
+				sentenceFinished = false;
+				dialogueArrow.SetActive(false);
+				DisplayNextSentence(1);
+			}
+			else if (isDialogueTyping == true)
+			{
+				StopAllCoroutines();
+				isDialogueTyping = false;
+				sentenceFinished = true;
+				textDisplay.text = "";
+				textDisplay.text = currentSentence;
+				dialogueArrow.SetActive(true);
+			}
 		}
 	}
 
@@ -70,13 +74,14 @@ public class DialogueManager : MonoBehaviour
 		isDialogueTyping = true;
 		dialoguePane.SetActive(true);
 		//dialoguePaneAnimator.SetTrigger("Open");
-		//DisableMovement();
 
 		sentences.Clear();
 		foreach (string sentence in dialogue.sentences)
 		{
 			sentences.Enqueue(sentence);
 		}
+		Debug.Log(dialogue.name);
+		_nameDisplay.text = dialogue.name;
 		DisplayNextSentence(indexSkipToPass);
 	}
 
@@ -106,7 +111,7 @@ public class DialogueManager : MonoBehaviour
 			yield return new WaitForSeconds(typingSpeed);
 		}
 		sentenceFinished = true;
-		//dialogueArrow.SetActive(true);
+		dialogueArrow.SetActive(true);
 	}
 
 	public void EndDialog()
