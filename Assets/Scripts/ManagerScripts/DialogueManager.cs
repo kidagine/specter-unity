@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
 	public float typingSpeed;
 	private bool isDialogueTyping;
 	private bool sentenceFinished;
+	private bool _hasDialogueEnded;
 	private string currentSentence;
 	private string sentence;
 
@@ -26,16 +27,22 @@ public class DialogueManager : MonoBehaviour
 		CheckInstance();
 	}
 
-	void Update()
+
+	public bool HasDialogueEnded()
 	{
-		if (Input.GetKeyDown(KeyCode.J) && sentenceFinished == true)
+		return _hasDialogueEnded;
+	}
+
+	public void NextSentence()
+	{
+		if (sentenceFinished == true)
 		{
 			isDialogueTyping = true;
 			sentenceFinished = false;
 			//dialogueArrow.SetActive(false);
 			DisplayNextSentence(1);
 		}
-		else if (Input.GetKeyDown(KeyCode.J) && isDialogueTyping == true)
+		else if (isDialogueTyping == true)
 		{
 			StopAllCoroutines();
 			isDialogueTyping = false;
@@ -104,6 +111,7 @@ public class DialogueManager : MonoBehaviour
 
 	public void EndDialog()
 	{
+		_hasDialogueEnded = true;
 		textDisplay.text = "";
 		//dialoguePaneAnimator.SetTrigger("Close");
 		StartCoroutine(DisablePane());

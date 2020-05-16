@@ -89,6 +89,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Talk"",
+                    ""type"": ""Button"",
+                    ""id"": ""21ef9c62-7cf1-44db-a6d1-9d813682fd8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -377,6 +385,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""ChargeDash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9279bdb-29af-4afb-85d4-e5faead0d5cd"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Talk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c16aa61-c005-484b-8fa6-4bed4173dbd0"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Talk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -422,6 +452,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerControls_Shoot = m_PlayerControls.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerControls_Dash = m_PlayerControls.FindAction("Dash", throwIfNotFound: true);
         m_PlayerControls_Inventory = m_PlayerControls.FindAction("Inventory", throwIfNotFound: true);
+        m_PlayerControls_Talk = m_PlayerControls.FindAction("Talk", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -480,6 +511,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_Shoot;
     private readonly InputAction m_PlayerControls_Dash;
     private readonly InputAction m_PlayerControls_Inventory;
+    private readonly InputAction m_PlayerControls_Talk;
     public struct PlayerControlsActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -493,6 +525,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_PlayerControls_Shoot;
         public InputAction @Dash => m_Wrapper.m_PlayerControls_Dash;
         public InputAction @Inventory => m_Wrapper.m_PlayerControls_Inventory;
+        public InputAction @Talk => m_Wrapper.m_PlayerControls_Talk;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -529,6 +562,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Inventory.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnInventory;
+                @Talk.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTalk;
+                @Talk.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTalk;
+                @Talk.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnTalk;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -560,6 +596,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
+                @Talk.started += instance.OnTalk;
+                @Talk.performed += instance.OnTalk;
+                @Talk.canceled += instance.OnTalk;
             }
         }
     }
@@ -593,5 +632,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnTalk(InputAction.CallbackContext context);
     }
 }

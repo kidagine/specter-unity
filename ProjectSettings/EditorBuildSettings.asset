@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OldSanctuary_SCN.unity
     guid: 17d501d77215791488899d7ceb1a907e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 0e39021d993ba074b9918adb327a7adf,
+      type: 2}
