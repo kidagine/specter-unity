@@ -12,9 +12,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform _inventoryPoint = default;
     [SerializeField] private EntityAudio _inventoryAudio = default;
     [SerializeField] private Player _player = default;
-    private bool _isResumedPressed;
-    private readonly int _outOfBoundsX = 600;
-    private readonly int _outOfBoundsY = 235;
+	private readonly int _outOfBoundsX = 600;
+	private readonly int _outOfBoundsY = 235;
+	private bool _isResumedPressed;
 
 
     public void SetInventory(bool state)

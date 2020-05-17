@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: PressStart2P_FNT
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -159016826
   material: {fileID: -7689745345171658854}
-  materialHashCode: 0
+  materialHashCode: 491650381
   m_Version: 1.1.0
   m_SourceFontFileGUID: d0d57ea321bb25f469221d116f9db765
   m_SourceFontFile_EditorRef: {fileID: 0}

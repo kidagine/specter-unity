@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
 	[SerializeField] private Animator _dialoguePaneAnimator;
 	[SerializeField] private TextMeshProUGUI _nameDisplay;
 	[SerializeField] private EntityAudio _dialogueAudio;
+	[SerializeField] private ItemUI _itemUI;
 	public Queue<string> sentences = new Queue<string>();
 	public float typingSpeed;
 	private bool isDialogueTyping;
@@ -124,7 +125,10 @@ public class DialogueManager : MonoBehaviour
 	IEnumerator DisablePane()
 	{
 		yield return new WaitForSeconds(0.25f);
-		//dialoguePaneAnimator.Rebind();
 		dialoguePane.SetActive(false);
+		if (!GlobalSettings._hasDash)
+		{
+			_itemUI.ShowItem(true);
+		}
 	}
 }

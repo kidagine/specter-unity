@@ -15,7 +15,6 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement = default;
     [SerializeField] private Player _player = default;
     [SerializeField] private EntityAudio _playerAudio = default;    
-    [SerializeField] private LayerMask _environmentLayerMask = default;
     private readonly float _aimRayDistance = 7.0f;
     private Vector2 _dashToPoint;
     private Color _activeAimColor;
@@ -23,7 +22,6 @@ public class PlayerAim : MonoBehaviour
     private float _lookDot;
     private bool _isDashLocked;
 
-    
     public Vector2 AimInput { private get; set; }
     public bool IsChargingDash { get; set; }
 
@@ -38,8 +36,11 @@ public class PlayerAim : MonoBehaviour
     void Update()
     {
         AimAtCursor();
-        HandleDash();
-    }
+		if (GlobalSettings._hasDash)
+		{
+			HandleDash();
+		}
+	}
 
     private void AimAtCursor()
     {
@@ -116,7 +117,7 @@ public class PlayerAim : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.up, _aimRayDistance);
         if (hit.collider != null)
         {
-            if (((1 << hit.collider.gameObject.gameObject.layer) & _environmentLayerMask) != 0)
+            if (hit.collider.gameObject.CompareTag("Dashable"))
             {
                 if (!_isDashLocked)
                 {
