@@ -8,8 +8,8 @@ public class DialogueManager : MonoBehaviour
 {
 	public GameObject dialoguePane;
 	public GameObject dialogueArrow;
-	public Animator dialoguePaneAnimator;
 	public TextMeshProUGUI textDisplay;
+	[SerializeField] private Animator _dialoguePaneAnimator;
 	[SerializeField] private TextMeshProUGUI _nameDisplay;
 	[SerializeField] private EntityAudio _dialogueAudio;
 	public Queue<string> sentences = new Queue<string>();
@@ -73,14 +73,13 @@ public class DialogueManager : MonoBehaviour
 	{
 		isDialogueTyping = true;
 		dialoguePane.SetActive(true);
-		//dialoguePaneAnimator.SetTrigger("Open");
+		_dialoguePaneAnimator.SetTrigger("Open");
 
 		sentences.Clear();
 		foreach (string sentence in dialogue.sentences)
 		{
 			sentences.Enqueue(sentence);
 		}
-		Debug.Log(dialogue.name);
 		_nameDisplay.text = dialogue.name;
 		DisplayNextSentence(indexSkipToPass);
 	}
@@ -118,13 +117,13 @@ public class DialogueManager : MonoBehaviour
 	{
 		_hasDialogueEnded = true;
 		textDisplay.text = "";
-		//dialoguePaneAnimator.SetTrigger("Close");
+		_dialoguePaneAnimator.SetTrigger("Close");
 		StartCoroutine(DisablePane());
 	}
 
 	IEnumerator DisablePane()
 	{
-		yield return new WaitForSeconds(0.4f);
+		yield return new WaitForSeconds(0.25f);
 		//dialoguePaneAnimator.Rebind();
 		dialoguePane.SetActive(false);
 	}

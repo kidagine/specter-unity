@@ -1465,6 +1465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 241167488}
+  - component: {fileID: 241167489}
   m_Layer: 5
   m_Name: DialoguePane_group
   m_TagString: Untagged
@@ -1496,6 +1497,25 @@ RectTransform:
   m_AnchoredPosition: {x: 314, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &241167489
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241167487}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27c8f0a0133ad354c94150ec6367330b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &241865656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7774054438913423756, guid: 36841b9ae5470f34bab8449d7a120d7e,
@@ -1866,8 +1886,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePane: {fileID: 1510423396}
   dialogueArrow: {fileID: 1051761911}
-  dialoguePaneAnimator: {fileID: 0}
   textDisplay: {fileID: 1330284104}
+  _dialoguePaneAnimator: {fileID: 241167489}
   _nameDisplay: {fileID: 1406276900}
   _dialogueAudio: {fileID: 294941430}
   typingSpeed: 0.1
@@ -1887,7 +1907,7 @@ MonoBehaviour:
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: ec300985581e141439aaeb319185fd3a, type: 3}
     volume: 0.1
-    pitch: 0.6
+    pitch: 0.8
     name: Typing
     loop: 0
     playOnAwake: 0
@@ -12887,6 +12907,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1f7da6fa-a1f6-4bec-a70b-60373d230982
     m_ActionName: PlayerControls/Inventory[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 21ef9c62-7cf1-44db-a6d1-9d813682fd8a
+    m_ActionName: PlayerControls/Talk[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
