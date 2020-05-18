@@ -6,7 +6,6 @@ public class PlayerCinematic : MonoBehaviour
 	[SerializeField] private GameObject _points;
 	[SerializeField] private Rigidbody2D _rigidbody = default;
 	[SerializeField] private PlayerMovement _playerMovement;
-	[SerializeField] private PlayerAim _playerAim;
 
 
     void Awake()
@@ -14,7 +13,6 @@ public class PlayerCinematic : MonoBehaviour
 		_points.SetActive(false);
 		_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 		_playerMovement.enabled = false;
-		//_playerAim.enabled = false;
     }
 
 	public void StartPlayerCinematicIntro()

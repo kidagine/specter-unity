@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Logo_SCN.unity
+    guid: 3e099bc1a87bb724691fb0c6514828de
+  - enabled: 1
     path: Assets/Scenes/MainMenu_SCN.unity
     guid: 5d9e7b20217dc574f8ab30ec7e7acc8c
   - enabled: 1
     path: Assets/Scenes/OldSanctuary_SCN.unity
     guid: 17d501d77215791488899d7ceb1a907e
+  - enabled: 1
+    path: Assets/Scenes/TheRockBottom_SCN.unity
+    guid: 7bfa7a8ebe4d54d47863b6818f4cedee
+  - enabled: 1
+    path: Assets/Scenes/Elysium_SCN.unity
+    guid: 8b1deb6e7d01ccf4fb8200c807e74e9b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0e39021d993ba074b9918adb327a7adf,
       type: 2}

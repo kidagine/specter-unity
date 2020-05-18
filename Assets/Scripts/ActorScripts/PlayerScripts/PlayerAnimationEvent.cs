@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Player))]
 public class PlayerAnimationEvent : MonoBehaviour
 {
     [SerializeField] private Player _player = default;

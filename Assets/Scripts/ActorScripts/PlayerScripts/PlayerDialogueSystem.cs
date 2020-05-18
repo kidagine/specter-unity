@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerDialogueSystem : MonoBehaviour
 {
+	[SerializeField] private Animator _animator = default;
+	[SerializeField] private Animator _animator2 = default;
 	[SerializeField] private PlayerUI _playerUI = default;
 	[SerializeField] private PlayerMovement _playerMovement = default;
+	private TrapDoor _trapDoor;
 	private Dialogue _dialogue;
 	private bool _isOnDialogueTrigger;
 	private bool _hasDialogueStarted;
@@ -19,6 +23,12 @@ public class PlayerDialogueSystem : MonoBehaviour
 			_dialogue = dialogueTrigger.GetDialogue();
 			Vector2 dialoguePromptPosition = dialogueTrigger.GetDialoguePromptPosition();
 			_playerUI.DialogueUI.SetPrompt(true, dialoguePromptPosition);
+		}
+		if (other.gameObject.TryGetComponent(out TrapDoor trapDoor))
+		{
+			_trapDoor = trapDoor;
+			Vector2 promptPosition = new Vector2(transform.position.x, transform.position.y - 2.5f);
+			_playerUI.InteractUI.SetPrompt(true, promptPosition);
 		}
 	}
 
@@ -43,6 +53,12 @@ public class PlayerDialogueSystem : MonoBehaviour
 				}
 			}
 		}
+		if (_trapDoor != null)
+		{
+			_animator.SetTrigger("EnterDoor");
+			_trapDoor.OpenDoor();
+		}
+		_playerUI.InteractUI.SetPrompt(false);
 	}
 
 	void OnTriggerExit2D(Collider2D other)
@@ -52,6 +68,10 @@ public class PlayerDialogueSystem : MonoBehaviour
 			_isOnDialogueTrigger = false;
 			_hasDialogueStarted = false;
 			_playerUI.DialogueUI.SetPrompt(false);
+		}
+		if (other.gameObject.TryGetComponent(out TrapDoor trapDoor))
+		{
+			_playerUI.InteractUI.SetPrompt(false);
 		}
 	}
 }

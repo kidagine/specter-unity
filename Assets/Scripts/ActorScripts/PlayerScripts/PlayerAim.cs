@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Player))]
 [RequireComponent(typeof(EntityAudio))]
