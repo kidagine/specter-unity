@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private DeathUI _deathUI = default;
     [SerializeField] private DialogueUI _dialogueUI = default;
 	[SerializeField] private InteractUI _interactUI = default;
+	[SerializeField] private FadeDarkUI _fadeDarkUI = default;
 
 
 	public StatsUI StatsUI { get { return _statsUI; } private set {} }
@@ -14,4 +15,5 @@ public class PlayerUI : MonoBehaviour
     public DeathUI DeathUI { get { return _deathUI; } private set {} }
     public DialogueUI DialogueUI { get { return _dialogueUI; } private set { } }
 	public InteractUI InteractUI { get { return _interactUI; } private set { } }
+	public FadeDarkUI FadeDarkUI { get { return _fadeDarkUI; } private set { } }
 }

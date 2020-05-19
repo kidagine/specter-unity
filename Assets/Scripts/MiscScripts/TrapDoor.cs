@@ -11,6 +11,11 @@ public class TrapDoor : MonoBehaviour
 		_animator.SetTrigger("Open");
 	}
 
+	public void CloseDoor()
+	{
+		_animator.SetTrigger("Close");
+	}
+
 	public Vector2 GetInteractPromptPosition()
 	{
 		Vector2 interactPromptPosition = new Vector2(transform.position.x + _promptOffset.x, transform.position.y + _promptOffset.y);

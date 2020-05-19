@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damageAmount, GameObject damagerObject)
     {
+		Debug.Log("HIT");
         GameManager.Instance.Player.TakeExp(_expWorth);
         Destroy(gameObject);
     }

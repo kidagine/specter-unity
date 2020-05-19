@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDialogueSystem : MonoBehaviour
 {
 	[SerializeField] private Animator _animator = default;
-	[SerializeField] private Animator _animator2 = default;
+	[SerializeField] private GameObject _dashEffectPrefab = default;
 	[SerializeField] private PlayerUI _playerUI = default;
 	[SerializeField] private PlayerMovement _playerMovement = default;
 	private TrapDoor _trapDoor;
@@ -56,6 +56,8 @@ public class PlayerDialogueSystem : MonoBehaviour
 		if (_trapDoor != null)
 		{
 			_animator.SetTrigger("EnterDoor");
+			_playerUI.FadeDarkUI.SetFade(true);
+			Instantiate(_dashEffectPrefab, transform.position, transform.rotation);
 			_trapDoor.OpenDoor();
 		}
 		_playerUI.InteractUI.SetPrompt(false);

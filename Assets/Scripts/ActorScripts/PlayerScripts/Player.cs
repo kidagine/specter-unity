@@ -102,7 +102,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             StartCoroutine(InvicibilityFrames());
             _playerAudio.Play("PlayerHurt");
-            _currentHealth--;
+			_currentHealth -= damageAmount;
             _playerUI.StatsUI.SetHearts(_currentHealth);
             if (_currentHealth <= 0)
             {
