@@ -5,7 +5,7 @@ public class PlayerShot : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody = default;
     [SerializeField] private GameObject _playerShotExplosion = default;
-    private readonly int _forceSpeed = 1000;
+	[SerializeField] private int _forceSpeed = 1000;
 
 
     void Start()

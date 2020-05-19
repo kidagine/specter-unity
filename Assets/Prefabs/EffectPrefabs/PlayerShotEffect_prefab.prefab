@@ -197,7 +197,7 @@ MonoBehaviour:
   _damageableLayer:
     serializedVersion: 2
     m_Bits: 1024
-  _damageAmount: 1
+  _damageAmount: 2
 --- !u!114 &-5566325755909895117
 MonoBehaviour:
   m_ObjectHideFlags: 0
