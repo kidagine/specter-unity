@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IDamageable
     private bool _isChargingShot;
     private bool _isInvisible;
 
-    public bool IsAttacking { get; private set; }
+    public bool IsAttacking { get; set; }
 
 
     public void Melee()
@@ -83,11 +83,11 @@ public class Player : MonoBehaviour, IDamageable
             _animator.SetTrigger("Shoot");
             Instantiate(_shotImpactEffectPrefab, _firePoint.position, _firePoint.rotation);
             Instantiate(_shotEffectPrefab, _firePoint.position, _firePoint.rotation);
+            IsAttacking = false;
         }
         _animator.SetBool("IsCharging", false);
         _playerMovement.LockMovement(false);
         _isChargingShot = false;
-        IsAttacking = false;
     }
 
     public void TakeExp(int expAmount)
@@ -106,6 +106,7 @@ public class Player : MonoBehaviour, IDamageable
             _playerUI.StatsUI.SetHearts(_currentHealth);
             if (_currentHealth <= 0)
             {
+                _isInvisible = true;
                 Die();
             }
             else

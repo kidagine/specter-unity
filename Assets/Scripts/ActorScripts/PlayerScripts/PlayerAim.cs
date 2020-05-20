@@ -14,7 +14,7 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement = default;
     [SerializeField] private Player _player = default;
     [SerializeField] private EntityAudio _playerAudio = default;    
-    private readonly float _aimRayDistance = 7.0f;
+    private readonly float _aimRayDistance = 9.0f;
     private Vector2 _dashToPoint;
     private Color _activeAimColor;
     private Color _disabledAimColor;

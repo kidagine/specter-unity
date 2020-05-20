@@ -1,20 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerCinematic : MonoBehaviour
 {
 	[SerializeField] private Animator _animator;
 	[SerializeField] private GameObject _points;
 	[SerializeField] private PlayerUI _playerUI;
+	[SerializeField] private Player _player;
 	[SerializeField] private Rigidbody2D _rigidbody = default;
 	[SerializeField] private PlayerMovement _playerMovement;
 	[SerializeField] private TrapDoor _trapDoor;
 	[SerializeField] private bool _hasEnteredRoom;
 
+	public event Action ExitDoorEvent;
+
+
     void Awake()
     {
 		_points.SetActive(false);
-		_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-		_playerMovement.enabled = false;
+		PlayerCinematicPause(true);
 		if (_hasEnteredRoom)
 		{
 			GlobalSettings._hasDash = true;
@@ -26,9 +30,9 @@ public class PlayerCinematic : MonoBehaviour
 
 	public void ExitDoorAnimationEvent()
 	{
-		_rigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-		_playerMovement.enabled = true;
+		PlayerCinematicPause(false);
 		_points.SetActive(true);
+		ExitDoorEvent();
 	}
 
 	public void StartPlayerCinematicIntro()
@@ -38,7 +42,22 @@ public class PlayerCinematic : MonoBehaviour
 
 	public void WokeUpAnimationEvent()
 	{
-		_rigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-		_playerMovement.enabled = true;
+		PlayerCinematicPause(false);
+	}
+
+	public void PlayerCinematicPause(bool state)
+	{
+		if (state)
+		{
+			_player.IsAttacking = true;
+			_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+			_playerMovement.LockMovement(true);
+		}
+		else
+		{
+			_player.IsAttacking = false;
+			_rigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+			_playerMovement.LockMovement(false);
+		}
 	}
 }

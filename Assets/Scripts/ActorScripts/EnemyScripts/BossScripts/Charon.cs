@@ -6,8 +6,9 @@ public class Charon : MonoBehaviour, IDamageable
 	[SerializeField] private Transform _playerTransform = default;
 	[SerializeField] private Transform _shootPoint = default;
 	[SerializeField] private GameObject _charonShot = default;
+	[SerializeField] private Animator _animator = default;
 	[SerializeField] private BossHealthUI _bossHealthUI = default;
-	private readonly int _moveSpeed = 3;
+	private readonly float _moveSpeed = 4.5f;
 	private readonly int _shootTimes = 3;	
 	private int _currentHealth = 30;
 	private Vector2 _moveToPosition;
@@ -18,7 +19,7 @@ public class Charon : MonoBehaviour, IDamageable
 		StartCoroutine(ShootPatternCoroutine());
     }
 
-	private void Update()
+	void Update()
 	{
 		transform.position = Vector2.MoveTowards(transform.position, new Vector2(_playerTransform.position.x, transform.position.y), _moveSpeed * Time.deltaTime);
 		//Vector2 direction = (_playerTransform.position - transform.position).normalized;
@@ -38,6 +39,7 @@ public class Charon : MonoBehaviour, IDamageable
 
 	public void TakeDamage(int damageAmount, GameObject damagerObject)
 	{
+		_animator.SetTrigger("Hurt");
 		_currentHealth -= damageAmount;
 		_bossHealthUI.SetHealth(_currentHealth);
 		if (_currentHealth <= 0)
