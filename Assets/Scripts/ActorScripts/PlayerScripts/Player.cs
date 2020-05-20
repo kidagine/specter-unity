@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private PlayerAim _playerAim = default;
     [SerializeField] private EntityAudio _playerAudio = default;
     private readonly float _meleeAttackCooldown = 0.3f;
-    private readonly float _invisibilityFramse = 0.5f;
+    private readonly float _invisibilityFramse = 0.7f;
     private int _currentHealth = 3;
     private int _currentExp;
     private bool _isInventoryOpen;
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour, IDamageable
                 _animator.SetTrigger("Hurt");
                 _playerMovement.KnockBack(damagerObject);
             }
-            _playerMovement.ResetPlayerMovement();
+            //_playerMovement.ResetPlayerMovement();
         }
     }
 

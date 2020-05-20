@@ -1,17 +1,23 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Charon : MonoBehaviour, IDamageable
 {
 	[SerializeField] private Transform _playerTransform = default;
 	[SerializeField] private Transform _shootPoint = default;
+	[SerializeField] private Transform _cameraConfiner = default;
+	[SerializeField] private Animator _wallAnimator = default;
 	[SerializeField] private GameObject _charonShot = default;
+	[SerializeField] private GameObject _bossExplosionPrefab = default;
+	[SerializeField] private Rigidbody2D _rigidbody = default;
 	[SerializeField] private Animator _animator = default;
-	[SerializeField] private BossHealthUI _bossHealthUI = default;
-	private readonly float _moveSpeed = 4.5f;
-	private readonly int _shootTimes = 3;	
-	private int _currentHealth = 30;
-	private Vector2 _moveToPosition;
+	[SerializeField] private BossUI _bossUI = default;
+	private readonly float _moveAcceleration = 3.0f;
+	private float _maxSpeed = 4.5f;
+	private float _moveSpeed;
+	private int _shootTimes = 3;
+	private int _currentHealth = 40;
 
 
 	void Start()
@@ -21,9 +27,36 @@ public class Charon : MonoBehaviour, IDamageable
 
 	void Update()
 	{
-		transform.position = Vector2.MoveTowards(transform.position, new Vector2(_playerTransform.position.x, transform.position.y), _moveSpeed * Time.deltaTime);
-		//Vector2 direction = (_playerTransform.position - transform.position).normalized;
-		//_moveToPosition = new Vector2(transform.position.x + direction.x, transform.position.y);
+		MoveTowardsPlayer();
+	}
+
+	void FixedUpdate()
+	{
+		Movement();
+	}
+
+	private void MoveTowardsPlayer()
+	{
+		float direction = transform.position.x - _playerTransform.transform.position.x;
+		if (direction < 0)
+		{
+			if (_moveSpeed < _maxSpeed)
+			{
+				_moveSpeed += Time.deltaTime * _moveAcceleration;
+			}
+		}
+		else if (direction > 0)
+		{
+			if (_moveSpeed > -_maxSpeed)
+			{
+				_moveSpeed -= Time.deltaTime * _moveAcceleration;
+			}
+		}
+	}
+
+	private void Movement()
+	{
+		_rigidbody.velocity = new Vector2(_moveSpeed, _rigidbody.velocity.y);
 	}
 
 	IEnumerator ShootPatternCoroutine()
@@ -33,7 +66,7 @@ public class Charon : MonoBehaviour, IDamageable
 			yield return new WaitForSeconds(0.5f);
 			Instantiate(_charonShot, _shootPoint.position, Quaternion.identity);
 		}
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1.5f);
 		StartCoroutine(ShootPatternCoroutine());
 	}
 
@@ -41,9 +74,20 @@ public class Charon : MonoBehaviour, IDamageable
 	{
 		_animator.SetTrigger("Hurt");
 		_currentHealth -= damageAmount;
-		_bossHealthUI.SetHealth(_currentHealth);
+		_bossUI.BossHealthUI.SetHealth(_currentHealth);
+		if (_currentHealth <= 20)
+		{
+			_maxSpeed = 6.0f;
+			_shootTimes = 5;
+		}
 		if (_currentHealth <= 0)
 		{
+			_cameraConfiner.position = new Vector2(3.0f, 4.5f);
+			_cameraConfiner.localScale = new Vector2(48.0f, 13.46f);
+			_wallAnimator.SetTrigger("Open");
+			_bossUI.BossVanishedUI.ShowVanished();
+			_bossUI.BossHealthUI.ShowHealth(false);
+			Instantiate(_bossExplosionPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

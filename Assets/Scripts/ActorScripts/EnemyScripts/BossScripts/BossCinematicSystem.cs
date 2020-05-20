@@ -24,6 +24,7 @@ public class BossCinematicSystem : MonoBehaviour
 
     public void StartBossFight()
     {
+        _bossUI.BossHealthUI.ShowHealth(true);
         _playerCinematicSystem.PlayerCinematicPause(false);
         _animator.enabled = true;
         _charon.enabled = true;

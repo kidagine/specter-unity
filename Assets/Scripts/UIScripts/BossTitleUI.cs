@@ -4,7 +4,6 @@ public class BossTitleUI : MonoBehaviour
 {
     [SerializeField] private Animator _animator = default;
     [SerializeField] private GameObject _bossCamera = default;
-    [SerializeField] private GameObject _bossHealth = default;
     [SerializeField] private BossCinematicSystem _bossCinematicSystem = default;
 
 
@@ -17,7 +16,6 @@ public class BossTitleUI : MonoBehaviour
 
     public void StartBossFightAnimationEvent()
     {
-        _bossHealth.SetActive(true);
         _bossCinematicSystem.StartBossFight();
     }
 
