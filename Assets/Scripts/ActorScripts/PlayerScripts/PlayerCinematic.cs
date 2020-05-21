@@ -32,7 +32,7 @@ public class PlayerCinematic : MonoBehaviour
 	{
 		PlayerCinematicPause(false);
 		_points.SetActive(true);
-		ExitDoorEvent();
+		ExitDoorEvent?.Invoke();
 	}
 
 	public void StartPlayerCinematicIntro()

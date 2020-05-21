@@ -383,10 +383,10 @@ public class TilemapStyx : EditorWindow
 
     private void ShowSpritePointer(Vector2 cellCenter)
     {
-        Vector3 topLeft = cellCenter + Vector2.up * 1;
-        Vector3 topRight = cellCenter + Vector2.right * 1 + Vector2.up * 1;
+        Vector3 topLeft = cellCenter + Vector2.up * _brushSize;
+        Vector3 topRight = cellCenter + Vector2.right * _brushSize + Vector2.up * _brushSize;
         Vector3 bottomLeft = cellCenter;
-        Vector3 bottomRight = cellCenter + Vector2.right * 1;
+        Vector3 bottomRight = cellCenter + Vector2.right * _brushSize;
 
         Handles.color = _cellColor;
         Vector3[] lines = { topLeft, topRight, topRight, bottomRight, bottomRight, bottomLeft, bottomLeft, topLeft };

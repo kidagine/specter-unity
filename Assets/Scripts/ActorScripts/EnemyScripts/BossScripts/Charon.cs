@@ -83,7 +83,7 @@ public class Charon : MonoBehaviour, IDamageable
 		if (_currentHealth <= 0)
 		{
 			_cameraConfiner.position = new Vector2(3.0f, 4.5f);
-			_cameraConfiner.localScale = new Vector2(48.0f, 13.46f);
+			_cameraConfiner.localScale = new Vector2(48.0f, 11.4f);
 			_wallAnimator.SetTrigger("Open");
 			_bossUI.BossVanishedUI.ShowVanished();
 			_bossUI.BossHealthUI.ShowHealth(false);
