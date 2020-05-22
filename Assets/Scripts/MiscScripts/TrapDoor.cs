@@ -2,8 +2,8 @@
 
 public class TrapDoor : MonoBehaviour
 {
-	[SerializeField] private Animator _animator;
-	[SerializeField] private Vector2 _promptOffset;
+	[SerializeField] private Animator _animator = default;
+	[SerializeField] private Vector2 _promptOffset = default;
 
 
 	public void OpenDoor()

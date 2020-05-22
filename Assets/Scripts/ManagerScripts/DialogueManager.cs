@@ -6,13 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(EntityAudio))]
 public class DialogueManager : MonoBehaviour
 {
-	public GameObject dialoguePane;
-	public GameObject dialogueArrow;
-	public TextMeshProUGUI textDisplay;
-	[SerializeField] private Animator _dialoguePaneAnimator;
-	[SerializeField] private TextMeshProUGUI _nameDisplay;
-	[SerializeField] private EntityAudio _dialogueAudio;
-	[SerializeField] private ItemUI _itemUI;
+	public GameObject dialoguePane = default;
+	public GameObject dialogueArrow = default;
+	public TextMeshProUGUI textDisplay = default;
+	[SerializeField] private Animator _dialoguePaneAnimator = default;
+	[SerializeField] private TextMeshProUGUI _nameDisplay = default;
+	[SerializeField] private EntityAudio _dialogueAudio = default;
+	[SerializeField] private ItemUI _itemUI = default;
 	public Queue<string> sentences = new Queue<string>();
 	public float typingSpeed;
 	private bool isDialogueTyping;

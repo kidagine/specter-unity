@@ -13,7 +13,8 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] private LineRenderer _lineRenderer = default;
     [SerializeField] private PlayerMovement _playerMovement = default;
     [SerializeField] private Player _player = default;
-    [SerializeField] private EntityAudio _playerAudio = default;    
+    [SerializeField] private EntityAudio _playerAudio = default;
+    [SerializeField] private LayerMask _environmentLayerMask = default;
     private readonly float _aimRayDistance = 9.0f;
     private Vector2 _dashToPoint;
     private Color _activeAimColor;
@@ -113,7 +114,7 @@ public class PlayerAim : MonoBehaviour
     {
         _lineRenderer.SetPosition(0, _firePoint.transform.position);
         Ray2D ray = new Ray2D(_firePoint.transform.position, _firePoint.transform.up);
-        RaycastHit2D hit = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.up, _aimRayDistance);
+        RaycastHit2D hit = Physics2D.Raycast(_firePoint.transform.position, _firePoint.transform.up, _aimRayDistance, _environmentLayerMask);
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.CompareTag("Dashable"))

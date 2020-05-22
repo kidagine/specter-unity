@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CinematicTextSystem : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI _cinematicDisplayText;
-	[SerializeField] private PlayerCinematic _playerCinematic;
-	[SerializeField] private CinematicText[] _cinematicTexts;
+	[SerializeField] private TextMeshProUGUI _cinematicDisplayText = default;
+	[SerializeField] private PlayerCinematic _playerCinematic = default;
+	[SerializeField] private CinematicText[] _cinematicTexts = default;
 
 
-    void Start()
+	void Start()
     {
 		StartCoroutine(ChangeTextCoroutine());
     }

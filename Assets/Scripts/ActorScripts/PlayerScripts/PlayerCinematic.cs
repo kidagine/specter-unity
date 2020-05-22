@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PlayerCinematic : MonoBehaviour
 {
-	[SerializeField] private Animator _animator;
-	[SerializeField] private GameObject _points;
-	[SerializeField] private PlayerUI _playerUI;
-	[SerializeField] private Player _player;
+	[SerializeField] private Animator _animator = default;
+	[SerializeField] private GameObject _points = default;
+	[SerializeField] private PlayerUI _playerUI = default;
+	[SerializeField] private Player _player = default;
 	[SerializeField] private Rigidbody2D _rigidbody = default;
-	[SerializeField] private PlayerMovement _playerMovement;
-	[SerializeField] private TrapDoor _trapDoor;
-	[SerializeField] private bool _hasEnteredRoom;
+	[SerializeField] private PlayerMovement _playerMovement = default;
+	[SerializeField] private TrapDoor _trapDoor = default;
+	[SerializeField] private bool _hasEnteredRoom = default;
 
 	public event Action ExitDoorEvent;
 

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class FadeDarkUI : MonoBehaviour
 {
-	[SerializeField] Animator _animator;
+	[SerializeField] private Animator _animator = default;
 
 
 	public void SetFade(bool state)

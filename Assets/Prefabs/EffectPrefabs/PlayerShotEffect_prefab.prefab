@@ -169,6 +169,10 @@ MonoBehaviour:
   _rigidbody: {fileID: 1298449181444253828}
   _playerShotExplosion: {fileID: 6635095658023406420, guid: 8d5ec164561a07e4fb5ef84fb20c343c,
     type: 3}
+  _attackLayers:
+    serializedVersion: 2
+    m_Bits: 1280
+  _forceSpeed: 1000
 --- !u!114 &5614563688141451548
 MonoBehaviour:
   m_ObjectHideFlags: 0

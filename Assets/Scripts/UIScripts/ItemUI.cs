@@ -2,10 +2,10 @@
 
 public class ItemUI : MonoBehaviour
 {
-	[SerializeField] private Animator _animator;
-	[SerializeField] private GameObject _itemCanvas;
-	[SerializeField] private GameObject _playerPoints;
-	[SerializeField] private PlayerMovement _playerMovement;
+	[SerializeField] private Animator _animator = default;
+	[SerializeField] private GameObject _itemCanvas = default;
+	[SerializeField] private GameObject _playerPoints = default;
+	[SerializeField] private PlayerMovement _playerMovement = default;
 	private bool _isVisible;
 
 
