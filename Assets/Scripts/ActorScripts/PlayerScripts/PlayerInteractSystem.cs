@@ -5,6 +5,7 @@ public class PlayerInteractSystem : MonoBehaviour
 {
 	[SerializeField] private Animator _animator = default;
 	[SerializeField] private GameObject _dashEffectPrefab = default;
+	[SerializeField] private PlayerCinematic _playerCinematic = default;
 	[SerializeField] private PlayerUI _playerUI = default;
 	[SerializeField] private PlayerMovement _playerMovement = default;
 	private TrapDoor _trapDoor;
@@ -31,7 +32,7 @@ public class PlayerInteractSystem : MonoBehaviour
 		}
 	}
 
-	public void Talk()
+	public void Interact()
 	{
 		if (_isOnDialogueTrigger)
 		{
@@ -54,9 +55,7 @@ public class PlayerInteractSystem : MonoBehaviour
 		}
 		if (_trapDoor != null)
 		{
-			_animator.SetTrigger("EnterDoor");
-			_playerUI.FadeDarkUI.SetFade(true);
-			Instantiate(_dashEffectPrefab, transform.position, transform.rotation);
+			_playerCinematic.EnterDoor();
 			_trapDoor.OpenDoor();
 		}
 		_playerUI.InteractUI.SetPrompt(false);

@@ -5,6 +5,7 @@ public class PlayerCinematic : MonoBehaviour
 {
 	[SerializeField] private Animator _animator = default;
 	[SerializeField] private GameObject _points = default;
+	[SerializeField] private GameObject _dashEffectPrefab = default;
 	[SerializeField] private PlayerUI _playerUI = default;
 	[SerializeField] private Player _player = default;
 	[SerializeField] private Rigidbody2D _rigidbody = default;
@@ -21,12 +22,25 @@ public class PlayerCinematic : MonoBehaviour
 		PlayerCinematicPause(true);
 		if (_hasEnteredRoom)
 		{
-			GlobalSettings._hasDash = true;
-			_playerUI.FadeDarkUI.SetFade(false);
-			_trapDoor.CloseDoor();
-			_animator.SetTrigger("ExitDoor");
+			ExitDoor();
 		}
     }
+
+	public void EnterDoor()
+	{
+		_animator.SetTrigger("EnterDoor");
+		_playerUI.FadeDarkUI.SetFade(true);
+		_points.SetActive(false);
+		Instantiate(_dashEffectPrefab, transform.position, transform.rotation);
+	}
+
+	public void ExitDoor()
+	{
+		GlobalSettings._hasDash = true;
+		_playerUI.FadeDarkUI.SetFade(false);
+		_trapDoor.CloseDoor();
+		_animator.SetTrigger("ExitDoor");
+	}
 
 	public void ExitDoorAnimationEvent()
 	{

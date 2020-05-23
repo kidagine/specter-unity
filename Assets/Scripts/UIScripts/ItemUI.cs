@@ -12,17 +12,18 @@ public class ItemUI : MonoBehaviour
 	// This Class needs refactoring
 	public void ShowItem(bool state)
 	{
-		_isVisible = true;
 		_itemCanvas.SetActive(state);
 		_animator.SetBool("IsOpen", state);
 		if (!state)
 		{
+			_isVisible = false;
 			_playerMovement.LockMovement(false);
 			_playerPoints.SetActive(true);
 			GlobalSettings._hasDash = true;
 		}
 		else
 		{
+			_isVisible = true;
 			_playerMovement.LockMovement(true);
 		}
 	}

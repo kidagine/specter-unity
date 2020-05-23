@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4039438922166129873}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.06, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4039438922809237095}
@@ -348,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4039438922203162492}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.21, y: -0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4039438922809237095}
@@ -451,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 4039438922203162480}
   _points: {fileID: 4039438921494390357}
+  _dashEffectPrefab: {fileID: 0}
   _playerUI: {fileID: 0}
   _player: {fileID: 4039438922809237083}
   _rigidbody: {fileID: 4039438922809237086}
@@ -795,6 +796,7 @@ MonoBehaviour:
   _animator: {fileID: 4039438922203162480}
   _dashEffectPrefab: {fileID: 7870263167371624666, guid: a832e71ca0ec65b408240a838f8c08c8,
     type: 3}
+  _playerCinematic: {fileID: 0}
   _playerUI: {fileID: 0}
   _playerMovement: {fileID: 4039438922809237094}
 --- !u!114 &4039438922809237080

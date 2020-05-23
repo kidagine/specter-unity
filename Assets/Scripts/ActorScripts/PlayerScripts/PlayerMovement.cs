@@ -217,11 +217,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void KnockBack(GameObject damagerObject)
     {
-        LockMovement(true);
-        Vector2 knockbackDirection = (transform.position - damagerObject.transform.position).normalized;
-        _rigidbody.AddForce(knockbackDirection * _knockbackForce, ForceMode2D.Impulse);
-        _rigidbody.AddForce(transform.up * _knockbackForce * 1.5f, ForceMode2D.Impulse);
-        StartCoroutine(ResetVelocity());
+        if (_rigidbody.gravityScale > 0.0f)
+        {
+            LockMovement(true);
+            Vector2 knockbackDirection = (transform.position - damagerObject.transform.position).normalized;
+            _rigidbody.AddForce(knockbackDirection * _knockbackForce, ForceMode2D.Impulse);
+            _rigidbody.AddForce(transform.up * _knockbackForce * 1.5f, ForceMode2D.Impulse);
+            StartCoroutine(ResetVelocity());
+        }
     }
 
     IEnumerator ResetVelocity()

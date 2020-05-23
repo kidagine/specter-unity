@@ -76,7 +76,7 @@ public class PlayerInputSystem : MonoBehaviour
 
 	private void Talk(InputAction.CallbackContext context)
 	{
-		_playerInteract.Talk();
+		_playerInteract.Interact();
 	}
 
 	private void OnEnable()

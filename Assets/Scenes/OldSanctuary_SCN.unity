@@ -845,6 +845,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1130,7 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74e78dad8d51cc4c9a0a896ec530368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 472425459}
 --- !u!1 &105369140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,6 +1812,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2410,11 +2430,11 @@ MonoBehaviour:
     - Finally you are awake
     - Welcome, to the bottom of the well, name is Paragon
     - Cozy, don't you think?
-    - I've been trapped here for more than I can remember, I have tried many times
-      to escape, but have long since gave up
-    - Maybe you can stand a chance
-    - Here take this, you will need it it. It's something I build in my quest to
-      escape, they allow you to launch on to certain points, try them out.
+    - I've been trapped here for more than I can remember.
+    - I have tried many times to escape, but have long since gave up. Maybe you can
+      stand a chance
+    - Here take this, you will need it it.
+    - It's something I came up with in my quest to escape, try them out.
 --- !u!61 &241865658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2479,6 +2499,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &259657727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4039438921494390357, guid: f6460d10f7938c44ea0393fd879e1fc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1599986642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &262573706
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,6 +2517,7 @@ GameObject:
   - component: {fileID: 262573707}
   - component: {fileID: 262573709}
   - component: {fileID: 262573710}
+  - component: {fileID: 262573711}
   m_Layer: 0
   m_Name: Camera_cinemachineVirtualCamera
   m_TagString: Untagged
@@ -2577,6 +2604,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &262573711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262573706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226464635c4f43e4ab1925c75ec7dd95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _yPosition: 0
 --- !u!1001 &267915928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4138,6 +4178,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455295370}
   m_CullTransparentMesh: 0
+--- !u!114 &472425453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4039438922809237094, guid: f6460d10f7938c44ea0393fd879e1fc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1599986642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62a02b9a5aa8ef41a0750e09fb7bf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &472425459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4039438922809237083, guid: f6460d10f7938c44ea0393fd879e1fc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1599986642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0ba7a035dd8ba498d14df1ac2e36a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &478326151
 GameObject:
   m_ObjectHideFlags: 0
@@ -4380,7 +4444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.29854012, y: 4.3, z: -10}
+  m_LocalPosition: {x: -0.29226208, y: 4.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 903993153}
@@ -5836,7 +5900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760062867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2062485, y: 3.3489368, z: -49.64974}
+  m_LocalPosition: {x: -1.2062485, y: 3.26, z: -49.64974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1065969273}
@@ -7277,6 +7341,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9025,7 +9099,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.8427508}
+  m_Offset: {x: -0.10211563, y: -1.8427508}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9036,7 +9110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4375, y: 0.25199854}
+  m_Size: {x: 1.6417313, y: 0.25199842}
   m_EdgeRadius: 0
 --- !u!1 &1090483054
 GameObject:
@@ -9157,8 +9231,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A hook created by the old paragon, it allows one to dash from wall to wall,
-    as long as the surface is attachable
+  m_text: 'A hook created by the old paragon, it allows one to dash from wall to
+    wall.
+
+    Use: Hold left click and release to dash to an attachable wall'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 279517d50f474e04cb668b92fda08bb7, type: 2}
   m_sharedMaterial: {fileID: -7689745345171658854, guid: 279517d50f474e04cb668b92fda08bb7,
@@ -9187,8 +9263,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9196,10 +9272,10 @@ MonoBehaviour:
   m_fontStyle: 0
   m_textAlignment: 257
   m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 5
+  m_wordSpacing: 3
+  m_lineSpacing: 6
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 30
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
@@ -9225,15 +9301,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -14.679314, y: -23.706598, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1109677831}
-    characterCount: 112
+    characterCount: 138
     spriteCount: 0
-    spaceCount: 22
-    wordCount: 23
+    spaceCount: 27
+    wordCount: 28
     linkCount: 0
-    lineCount: 6
+    lineCount: 7
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -9443,6 +9519,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12711,7 +12797,7 @@ Transform:
   m_Children:
   - {fileID: 886514374}
   m_Father: {fileID: 1670851288}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1510423398
 MonoBehaviour:
@@ -13240,6 +13326,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Specter_group
       objectReference: {fileID: 0}
+    - target: {fileID: 4039438922203162481, guid: f6460d10f7938c44ea0393fd879e1fc4,
+        type: 3}
+      propertyPath: _playerUI
+      value: 
+      objectReference: {fileID: 1670851289}
     - target: {fileID: 4039438922203162494, guid: f6460d10f7938c44ea0393fd879e1fc4,
         type: 3}
       propertyPath: _playerUI
@@ -13250,6 +13341,12 @@ PrefabInstance:
       propertyPath: _trapDoor
       value: 
       objectReference: {fileID: 2006328702}
+    - target: {fileID: 4039438922203162494, guid: f6460d10f7938c44ea0393fd879e1fc4,
+        type: 3}
+      propertyPath: _dashEffectPrefab
+      value: 
+      objectReference: {fileID: 2187412638136993746, guid: e529c2b75b827a34d8150c1d5741fd0a,
+        type: 3}
     - target: {fileID: 4039438922203162495, guid: f6460d10f7938c44ea0393fd879e1fc4,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -13275,6 +13372,11 @@ PrefabInstance:
       propertyPath: _playerUI
       value: 
       objectReference: {fileID: 1670851289}
+    - target: {fileID: 4039438922809237085, guid: f6460d10f7938c44ea0393fd879e1fc4,
+        type: 3}
+      propertyPath: _playerCinematic
+      value: 
+      objectReference: {fileID: 1103845583}
     - target: {fileID: 4039438922809237095, guid: f6460d10f7938c44ea0393fd879e1fc4,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -13294,6 +13396,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14093,8 +14205,8 @@ Transform:
   - {fileID: 1090483055}
   - {fileID: 776080193}
   - {fileID: 685150796}
-  - {fileID: 1510423397}
   - {fileID: 2117789488}
+  - {fileID: 1510423397}
   - {fileID: 1878032559}
   - {fileID: 84704674}
   m_Father: {fileID: 871231588}
@@ -14233,6 +14345,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15060,6 +15182,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17585,6 +17717,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010216063}
     m_Modifications:
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195351114701554285, guid: 67843a107f2a2674988e06c3af989133,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9195351114701554286, guid: 67843a107f2a2674988e06c3af989133,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17972,13 +18119,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117789487}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1311722795}
   m_Father: {fileID: 1670851288}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2117789489
 Animator:
@@ -18013,8 +18160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 2117789489}
   _itemCanvas: {fileID: 1311722794}
-  _playerPoints: {fileID: 0}
-  _playerMovement: {fileID: 0}
+  _playerPoints: {fileID: 259657727}
+  _playerMovement: {fileID: 472425453}
 --- !u!1 &2131848569
 GameObject:
   m_ObjectHideFlags: 0
