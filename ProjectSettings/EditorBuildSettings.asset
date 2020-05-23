@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 7bfa7a8ebe4d54d47863b6818f4cedee
   - enabled: 1
     path: Assets/Scenes/Elysium_SCN.unity
-    guid: 8b1deb6e7d01ccf4fb8200c807e74e9b
+    guid: 0f43648de28c3504081442e652278445
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0e39021d993ba074b9918adb327a7adf,
       type: 2}

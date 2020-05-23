@@ -27,6 +27,7 @@ public class Player : MonoBehaviour, IDamageable
     private bool _isInventoryOpen;
     private bool _isChargingShot;
     private bool _isInvisible;
+    private bool _hasDied;
 
     public bool IsAttacking { get; set; }
 
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damageAmount, GameObject damagerObject)
     {
-        if (!_isInvisible)
+        if (!_isInvisible && !_hasDied)
         {
             StartCoroutine(InvicibilityFrames());
             _playerAudio.Play("PlayerHurt");
@@ -106,7 +107,7 @@ public class Player : MonoBehaviour, IDamageable
             _playerUI.StatsUI.SetHearts(_currentHealth);
             if (_currentHealth <= 0)
             {
-                _isInvisible = true;
+                _hasDied = true;
                 Die();
             }
             else

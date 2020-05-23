@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class PlayerDialogueSystem : MonoBehaviour
+public class PlayerInteractSystem : MonoBehaviour
 {
 	[SerializeField] private Animator _animator = default;
 	[SerializeField] private GameObject _dashEffectPrefab = default;

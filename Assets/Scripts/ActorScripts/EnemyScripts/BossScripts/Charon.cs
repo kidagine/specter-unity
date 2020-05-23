@@ -7,12 +7,15 @@ public class Charon : MonoBehaviour, IDamageable
 	[SerializeField] private Transform _shootPoint = default;
 	[SerializeField] private Transform _cameraConfiner = default;
 	[SerializeField] private Animator _wallAnimator = default;
+	[SerializeField] private SpriteRenderer _spriteRenderer = default;
 	[SerializeField] private GameObject _charonShot = default;
 	[SerializeField] private GameObject _bossExplosionPrefab = default;
 	[SerializeField] private Rigidbody2D _rigidbody = default;
 	[SerializeField] private Animator _animator = default;
 	[SerializeField] private BossUI _bossUI = default;
 	private readonly float _moveAcceleration = 3.0f;
+	private Color _normalColor;
+	private Color _hurtColor;
 	private float _maxSpeed = 4.5f;
 	private float _moveSpeed;
 	private int _shootTimes = 3;
@@ -21,6 +24,8 @@ public class Charon : MonoBehaviour, IDamageable
 
 	void Start()
     {
+		ColorUtility.TryParseHtmlString("#ff175c", out _hurtColor);
+		ColorUtility.TryParseHtmlString("#ffffff", out _normalColor);
 		StartCoroutine(ShootPatternCoroutine());
     }
 
@@ -71,7 +76,7 @@ public class Charon : MonoBehaviour, IDamageable
 
 	public void TakeDamage(int damageAmount, GameObject damagerObject)
 	{
-		_animator.SetTrigger("Hurt");
+		StartCoroutine(HurtEffect());
 		_currentHealth -= damageAmount;
 		_bossUI.BossHealthUI.SetHealth(_currentHealth);
 		if (_currentHealth <= 20)
@@ -81,13 +86,20 @@ public class Charon : MonoBehaviour, IDamageable
 		}
 		if (_currentHealth <= 0)
 		{
-			_cameraConfiner.position = new Vector2(3.0f, 4.5f);
-			_cameraConfiner.localScale = new Vector2(48.0f, 11.4f);
+			_cameraConfiner.position = new Vector2(3.0f, _cameraConfiner.position.y);
+			_cameraConfiner.localScale = new Vector2(48.0f, _cameraConfiner.localScale.y);
 			_wallAnimator.SetTrigger("Open");
 			_bossUI.BossVanishedUI.ShowVanished();
 			_bossUI.BossHealthUI.ShowHealth(false);
 			Instantiate(_bossExplosionPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
+	}
+
+	IEnumerator HurtEffect()
+	{
+		_spriteRenderer.color = _hurtColor;
+		yield return new WaitForSeconds(0.1f);
+		_spriteRenderer.color = _normalColor;
 	}
 }

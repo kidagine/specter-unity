@@ -9,7 +9,7 @@ public class PlayerInputSystem : MonoBehaviour
 	[SerializeField] private Player _player = default;
 	[SerializeField] private PlayerMovement _playerMovement = default;
 	[SerializeField] private PlayerAim _playerAim = default;
-	[SerializeField] private PlayerDialogueSystem _playerDialogue = default;
+	[SerializeField] private PlayerInteractSystem _playerInteract = default;
 	private PlayerInputActions _playerInputActions;
 
 
@@ -76,7 +76,7 @@ public class PlayerInputSystem : MonoBehaviour
 
 	private void Talk(InputAction.CallbackContext context)
 	{
-		_playerDialogue.Talk();
+		_playerInteract.Talk();
 	}
 
 	private void OnEnable()
