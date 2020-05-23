@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TargetFinder : MonoBehaviour
 {
     [SerializeField] private GameObject _targetObserverObject = default;
+    [SerializeField] private LayerMask _targetLayer = default;
     private ITargetObserver _targetObserver;
 
 
@@ -18,7 +17,7 @@ public class TargetFinder : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Player player))
+        if (((1 << collision.gameObject.gameObject.layer) & _targetLayer) != 0)
         {
             _targetObserver.ReceiveTarget(collision.transform);
         }
@@ -26,9 +25,8 @@ public class TargetFinder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Player player))
+        if (((1 << collision.gameObject.gameObject.layer) & _targetLayer) != 0)
         {
-            Debug.Log("Lost");
             _targetObserver.LostTarget();
         }
     }
