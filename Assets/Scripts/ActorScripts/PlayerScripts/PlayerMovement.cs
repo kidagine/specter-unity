@@ -181,8 +181,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector2 contactPoint = collision.contacts[0].normal;
-        AttachToSurface(contactPoint);
+        if (collision.gameObject.CompareTag("Dashable"))
+        {
+            Vector2 contactPoint = collision.contacts[0].normal;
+            AttachToSurface(contactPoint);
+        }
     }
 
     private void AttachToSurface(Vector2 contactPoint)
