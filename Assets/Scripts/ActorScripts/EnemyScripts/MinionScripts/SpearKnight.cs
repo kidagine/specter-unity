@@ -15,7 +15,7 @@ public class SpearKnight : MonoBehaviour, IDamageable, ITargetObserver
     [SerializeField] private LayerMask _environmentLayerMask = default;
     [SerializeField] private float _moveSpeed = 2;
     [SerializeField] private bool _startOnLeft = default;
-    private readonly int _checkDistanceRay = 2;
+    private readonly int _checkDistanceRay = 1;
     private Transform _player;
     private int _currentHealth = 1;
     private bool _isLookingRight;

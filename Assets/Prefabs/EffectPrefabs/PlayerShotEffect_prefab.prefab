@@ -172,7 +172,7 @@ MonoBehaviour:
   _attackLayers:
     serializedVersion: 2
     m_Bits: 1280
-  _forceSpeed: 1000
+  _forceSpeed: 500
 --- !u!114 &5614563688141451548
 MonoBehaviour:
   m_ObjectHideFlags: 0

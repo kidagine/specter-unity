@@ -7,7 +7,7 @@ public class SpearKnightAnimationEvent : MonoBehaviour
 
     public void DieAnimationEvent()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     public void ChargeToTargetAnimationEvent()

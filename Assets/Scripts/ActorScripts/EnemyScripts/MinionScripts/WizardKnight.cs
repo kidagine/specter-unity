@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Linq.Expressions;
 using UnityEngine;
 
 public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
@@ -18,7 +17,8 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
     [SerializeField] private LayerMask _environmentLayerMask = default;
     [SerializeField] private float _moveSpeed = 2;
     [SerializeField] private bool _startOnLeft = default;
-    private readonly int _checkDistanceRay = 2;
+    [SerializeField] private bool _isUpsideDown = default;
+    private readonly int _checkDistanceRay = 1;
     private Transform _player;
     private int _currentHealth = 1;
     private bool _isLookingRight;
@@ -170,15 +170,31 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
     private void InvertMovement()
     {
         _moveSpeed *= -1;
-        if (_moveSpeed > 0)
+        if (!_isUpsideDown)
         {
-            _isLookingRight = true;
-            _spriteRenderer.flipX = _isLookingRight;
+            if (_moveSpeed > 0)
+            {
+                _isLookingRight = true;
+                _spriteRenderer.flipX = _isLookingRight;
+            }
+            else
+            {
+                _isLookingRight = false;
+                _spriteRenderer.flipX = _isLookingRight;
+            }
         }
         else
         {
-            _isLookingRight = false;
-            _spriteRenderer.flipX = _isLookingRight;
+            if (_moveSpeed < 0)
+            {
+                _isLookingRight = true;
+                _spriteRenderer.flipX = _isLookingRight;
+            }
+            else
+            {
+                _isLookingRight = false;
+                _spriteRenderer.flipX = _isLookingRight;
+            }
         }
     }
 }

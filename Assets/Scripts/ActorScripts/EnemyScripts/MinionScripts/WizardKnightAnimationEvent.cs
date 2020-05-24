@@ -7,7 +7,7 @@ public class WizardKnightAnimationEvent : MonoBehaviour
 
     public void DieAnimationEvent()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     public void ShootAnimationEvent()

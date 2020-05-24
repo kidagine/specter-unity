@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody = default;
     [SerializeField] private BoxCollider2D _boxCollider = default;
     [SerializeField] private BoxCollider2D _dashCollider = default;
+    [SerializeField] private CircleCollider2D _cicleCollider = default;
     [SerializeField] private SpriteRenderer _spriteRenderer = default;
     [SerializeField] private Transform _groundCheckPoint = default;
     [SerializeField] private Transform _meleePoint = default;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private EntityAudio _playerAudio = default;
     [SerializeField] private PlayerAim _playerAim = default;
     [SerializeField] private LayerMask _environmentLayerMask = default;
+    public Transform point;
     private readonly float _maximumFootstepCooldown = 0.3f;
     private readonly float _maximumJumpCooldown = 0.15f;
     private readonly int _moveSpeed = 5;
@@ -166,14 +168,17 @@ public class PlayerMovement : MonoBehaviour
     public void Dash()
     {
         Vector3 dashToPoint = _playerAim.GetDashToObject();
+        Vector2 dashDirection = dashToPoint - transform.position;
         if (dashToPoint != Vector3.zero)
         {
+            _rigidbody.gravityScale = 0.0f;
             _animator.SetBool("IsDashing", true);
             _playerAudio.Play("PlayerDash");
             _boxCollider.enabled = false;
             _dashCollider.enabled = true;
             IsDashing = true;
-            _rigidbody.AddForce((dashToPoint - transform.position) * _dashImpulse ,ForceMode2D.Impulse);
+           transform.up = dashDirection;
+            _rigidbody.AddForce(dashDirection * _dashImpulse ,ForceMode2D.Impulse);
             Instantiate(_dashEffectPrefab, transform.position, transform.rotation);
             _playerAim.SetDashToObjectToNull();
         }
@@ -192,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsDashing)
         {
+            ResetPlayerMovement();
             if (contactPoint == new Vector2(0.0f, 1.0f))
             {
                 LockMovement(false);
@@ -204,7 +210,6 @@ public class PlayerMovement : MonoBehaviour
                 _rigidbody.gravityScale = 0.0f;
             }
             transform.up = contactPoint;
-            ResetPlayerMovement();
             Instantiate(_dashLandEffectPrefab, transform.position, transform.rotation);
         }
     }
@@ -215,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("IsDashLocked", false);
         _boxCollider.enabled = true;
         _dashCollider.enabled = false;
+        _cicleCollider.enabled = true;
         IsDashing = false;
     }
 

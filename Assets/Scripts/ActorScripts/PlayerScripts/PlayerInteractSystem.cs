@@ -9,6 +9,7 @@ public class PlayerInteractSystem : MonoBehaviour
 	[SerializeField] private PlayerUI _playerUI = default;
 	[SerializeField] private PlayerMovement _playerMovement = default;
 	private TrapDoor _trapDoor;
+	private Lever _lever;
 	private Dialogue _dialogue;
 	private bool _isOnDialogueTrigger;
 	private bool _hasDialogueStarted;
@@ -28,6 +29,12 @@ public class PlayerInteractSystem : MonoBehaviour
 		{
 			_trapDoor = trapDoor;
 			Vector2 promptPosition = new Vector2(transform.position.x, transform.position.y - 2.5f);
+			_playerUI.InteractUI.SetPrompt(true, promptPosition);
+		}
+		if (other.gameObject.TryGetComponent(out Lever lever))
+		{
+			_lever = lever;
+			Vector2 promptPosition = _lever.GetPromptPosition();
 			_playerUI.InteractUI.SetPrompt(true, promptPosition);
 		}
 	}
@@ -58,6 +65,10 @@ public class PlayerInteractSystem : MonoBehaviour
 			_playerCinematic.EnterDoor();
 			_trapDoor.OpenDoor();
 		}
+		if (_lever != null)
+		{
+			_lever.OpenGate();
+		}
 		_playerUI.InteractUI.SetPrompt(false);
 	}
 
@@ -70,6 +81,10 @@ public class PlayerInteractSystem : MonoBehaviour
 			_playerUI.DialogueUI.SetPrompt(false);
 		}
 		if (other.gameObject.TryGetComponent(out TrapDoor trapDoor))
+		{
+			_playerUI.InteractUI.SetPrompt(false);
+		}
+		if (other.gameObject.TryGetComponent(out Lever lever))
 		{
 			_playerUI.InteractUI.SetPrompt(false);
 		}

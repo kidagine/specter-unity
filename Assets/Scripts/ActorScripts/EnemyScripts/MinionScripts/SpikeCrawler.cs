@@ -9,6 +9,7 @@ public class SpikeCrawler : MonoBehaviour
     [SerializeField] private LayerMask _environmentLayerMask = default;
     [SerializeField] private float _moveSpeed = 2;
     [SerializeField] private bool _startOnLeft = default;
+    [SerializeField] private bool _isOnSide = default;
     private readonly int _checkDistanceRay = 2;
     private bool _checkOnRight = true;
     private bool _checkOnLeft = true;
@@ -34,7 +35,14 @@ public class SpikeCrawler : MonoBehaviour
 
     private void Movement()
     {
-        _rigidbody.velocity = new Vector2(_moveSpeed, _rigidbody.velocity.y);
+        if (!_isOnSide)
+        {
+            _rigidbody.velocity = new Vector2(_moveSpeed, _rigidbody.velocity.y);
+        }
+        else
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _moveSpeed);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
