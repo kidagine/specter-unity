@@ -11,6 +11,7 @@ public class DeathUI : MonoBehaviour
     {
         if (GlobalSettings._hasDied)
         {
+            GlobalSettings._hasDied = false;
             _animator.SetTrigger("SlideOut");
         }
     }

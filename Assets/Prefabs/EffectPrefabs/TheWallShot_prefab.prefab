@@ -151,7 +151,7 @@ MonoBehaviour:
   _damageableLayer:
     serializedVersion: 2
     m_Bits: 2048
-  _damageAmount: 0
+  _damageAmount: 1
 --- !u!61 &1424242346236093902
 BoxCollider2D:
   m_ObjectHideFlags: 0

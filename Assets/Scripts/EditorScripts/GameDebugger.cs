@@ -1,5 +1,4 @@
-﻿#if (UNITY_EDITOR) 
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -93,4 +92,3 @@ public class GameDebugger : MonoBehaviour
         CheckpointManager.Instance.CheckpointEvent -= UpdateCheckpoint;
     }
 }
-#endif
