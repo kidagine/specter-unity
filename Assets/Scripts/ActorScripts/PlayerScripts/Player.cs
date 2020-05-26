@@ -15,15 +15,18 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private GameObject _shotEffectPrefab = default;
     [SerializeField] private GameObject _shotImpactEffectPrefab = default;
     [SerializeField] private GameObject _deathEffectPrefab = default;
+    [SerializeField] private SpriteRenderer _spriteRenderer = default;
     [SerializeField] private PlayerMovement _playerMovement = default;
     [SerializeField] private PlayerInputSystem _playerInputSystem = default;
     [SerializeField] private PlayerUI _playerUI = default;
     [SerializeField] private PlayerAim _playerAim = default;
     [SerializeField] private EntityAudio _playerAudio = default;
     private readonly float _meleeAttackCooldown = 0.3f;
-    private readonly float _invisibilityFramse = 0.7f;
-    private int _currentHealth = 3;
-    private int _currentExp;
+    private readonly float _invisibilityFrames = 0.17f;
+    private readonly int _invisibilityRepeat = 4;
+    private int _maxHearts;
+    private int _currentHealth;
+    private int _attack;
     private bool _isInventoryOpen;
     private bool _isChargingShot;
     private bool _isInvisible;
@@ -38,7 +41,8 @@ public class Player : MonoBehaviour, IDamageable
         {
             _playerAudio.Play("PlayerMelee");
             _animator.SetTrigger("Melee");
-            Instantiate(_meleeEffectPrefab, _meleePoint.position, _meleePoint.rotation);
+            Damager damager = Instantiate(_meleeEffectPrefab, _meleePoint.position, _meleePoint.rotation).GetComponent<Damager>();
+            damager._damageAmount = _attack;
             StartCoroutine(AttackCooldown(_meleeAttackCooldown, true));
         }
     }
@@ -83,28 +87,22 @@ public class Player : MonoBehaviour, IDamageable
             _playerAudio.Play("PlayerShot");
             _animator.SetTrigger("Shoot");
             Instantiate(_shotImpactEffectPrefab, _firePoint.position, _firePoint.rotation);
-            Instantiate(_shotEffectPrefab, _firePoint.position, _firePoint.rotation);
-            IsAttacking = false;
+            Damager damager = Instantiate(_shotEffectPrefab, _firePoint.position, _firePoint.rotation).GetComponent<Damager>();
+            damager._damageAmount = _attack;
         }
         _animator.SetBool("IsCharging", false);
         _playerMovement.LockMovement(false);
         _isChargingShot = false;
-    }
-
-    public void TakeExp(int expAmount)
-    {
-        _currentExp += expAmount;
-        _playerUI.StatsUI.SetExp(_currentExp);
+        IsAttacking = false;
     }
 
     public void TakeDamage(int damageAmount, GameObject damagerObject)
     {
         if (!_isInvisible && !_hasDied)
         {
-            StartCoroutine(InvicibilityFrames());
             _playerAudio.Play("PlayerHurt");
 			_currentHealth -= damageAmount;
-            _playerUI.StatsUI.SetHearts(_currentHealth);
+            _playerUI.StatsUI.SetHearts(_maxHearts, _currentHealth);
             if (_currentHealth <= 0)
             {
                 _hasDied = true;
@@ -112,6 +110,7 @@ public class Player : MonoBehaviour, IDamageable
             }
             else
             {
+                StartCoroutine(InvicibilityFrames());
                 _animator.SetTrigger("Hurt");
                 _playerMovement.KnockBack(damagerObject);
             }
@@ -127,6 +126,21 @@ public class Player : MonoBehaviour, IDamageable
         Vector2 _playerHeadPosition = new Vector2(transform.position.x + 0.22f, transform.position.y + 1.18f);
         Instantiate(_deathEffectPrefab, _playerHeadPosition, transform.rotation);
         _playerUI.DeathUI.SetDeath(true);
+    }
+
+    public void SetHealth(int maxHearts, bool dontSetHearts)
+    {
+        _maxHearts = maxHearts;
+        if (!dontSetHearts)
+        {
+            _currentHealth = _maxHearts;
+        }
+        _playerUI.StatsUI.SetHearts(_maxHearts, _currentHealth);
+    }
+
+    public void SetAttack(int attack)
+    {
+        _attack = attack;
     }
 
     public void Inventory()
@@ -152,7 +166,11 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator InvicibilityFrames()
     {
         _isInvisible = true;
-        yield return new WaitForSeconds(_invisibilityFramse);
+        for (int i = 0; i < _invisibilityRepeat; i++)
+        {
+            yield return new WaitForSeconds(_invisibilityFrames);
+            _spriteRenderer.enabled = !_spriteRenderer.enabled;
+        }
         _isInvisible = false;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathUI : MonoBehaviour
 {
@@ -26,6 +27,6 @@ public class DeathUI : MonoBehaviour
     public void Restart()
     {
         GlobalSettings._hasDied = true;
-        CheckpointManager.Instance.Restart();
+        SceneManager.LoadScene(2);
     }
 }

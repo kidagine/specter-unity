@@ -66,6 +66,12 @@ public class EntityAudio : MonoBehaviour
 		sound.source.Stop();
 	}
 
+	public bool IsPlaying(string name)
+	{
+		Sound sound = Array.Find(_sounds, s => s.name == name);
+		return sound.source.isPlaying;
+	}
+
 	public void PlayRandomFromSoundGroup(string name)
 	{
 		SoundGroup soundGroup = Array.Find(_soundGroups, sg => sg.name == name);

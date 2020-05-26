@@ -44,13 +44,14 @@ GameObject:
   - component: {fileID: 8455215528353287607}
   - component: {fileID: 8455215528353287625}
   - component: {fileID: 8455215528353287606}
+  - component: {fileID: 3026946220913638876}
   m_Layer: 10
   m_Name: TheWall_minion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8455215528353287602
 Transform:
   m_ObjectHideFlags: 0
@@ -195,7 +196,30 @@ MonoBehaviour:
   _explosionPrefab: {fileID: 6635095658023406420, guid: 205c62cde26eaee438897edcf6f62328,
     type: 3}
   _shootPoint: {fileID: 8455215528122662524}
+  _animator: {fileID: 8455215528353287625}
   _spriteRenderer: {fileID: 8455215528353287605}
+  _theWallAudio: {fileID: 3026946220913638876}
+--- !u!114 &3026946220913638876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455215528353287603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a543ff1bf74ce1e42a76af877dbc9297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: dced437902a1f0e46b8ec32aaf169a25, type: 3}
+    volume: 1
+    pitch: 1
+    name: TheWallCharge
+    loop: 0
+    playOnAwake: 0
+  _soundGroups: []
 --- !u!1 &8455215529302152787
 GameObject:
   m_ObjectHideFlags: 0

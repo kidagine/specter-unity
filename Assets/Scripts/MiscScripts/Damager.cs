@@ -4,8 +4,10 @@ using UnityEngine;
 public class Damager : MonoBehaviour
 {
     [SerializeField] private LayerMask _damageableLayer = default;
-    [SerializeField] private int _damageAmount = default;
+    public int _damageAmount = default;
+
     public event Action _hitTarget;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

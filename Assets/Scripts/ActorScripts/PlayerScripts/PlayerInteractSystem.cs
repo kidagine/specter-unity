@@ -64,10 +64,12 @@ public class PlayerInteractSystem : MonoBehaviour
 		{
 			_playerCinematic.EnterDoor();
 			_trapDoor.OpenDoor();
+			_trapDoor = null;
 		}
 		if (_lever != null)
 		{
 			_lever.OpenGate();
+			_lever = null;
 		}
 		_playerUI.InteractUI.SetPrompt(false);
 	}

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Charon : MonoBehaviour, IDamageable
+public class Charon : MonoBehaviour, IDamageable, IExpGiver
 {
 	[SerializeField] private Transform _playerTransform = default;
 	[SerializeField] private Transform _shootPoint = default;
@@ -12,8 +12,10 @@ public class Charon : MonoBehaviour, IDamageable
 	[SerializeField] private GameObject _bossExplosionPrefab = default;
 	[SerializeField] private Rigidbody2D _rigidbody = default;
 	[SerializeField] private Animator _animator = default;
+	[SerializeField] private EntityAudio _charonAudio = default;
 	[SerializeField] private BossUI _bossUI = default;
 	private readonly float _moveAcceleration = 3.0f;
+	private readonly int _expWorth = 30;
 	private Color _normalColor;
 	private Color _hurtColor;
 	private float _maxSpeed = 4.5f;
@@ -24,6 +26,7 @@ public class Charon : MonoBehaviour, IDamageable
 
 	void Start()
     {
+		_charonAudio.Play("CharonWalk");
 		ColorUtility.TryParseHtmlString("#ff175c", out _hurtColor);
 		ColorUtility.TryParseHtmlString("#ffffff", out _normalColor);
 		StartCoroutine(ShootPatternCoroutine());
@@ -86,6 +89,7 @@ public class Charon : MonoBehaviour, IDamageable
 		}
 		if (_currentHealth <= 0)
 		{
+			GiveExp();
 			_cameraConfiner.position = new Vector2(3.0f, _cameraConfiner.position.y);
 			_cameraConfiner.localScale = new Vector2(48.0f, _cameraConfiner.localScale.y);
 			_wallAnimator.SetTrigger("Open");
@@ -101,5 +105,10 @@ public class Charon : MonoBehaviour, IDamageable
 		_spriteRenderer.color = _hurtColor;
 		yield return new WaitForSeconds(0.1f);
 		_spriteRenderer.color = _normalColor;
+	}
+
+	public void GiveExp()
+	{
+		GameManager.Instance.GivePlayerExp(_expWorth);
 	}
 }

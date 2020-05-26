@@ -54,7 +54,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2858590457392124492
 Transform:
   m_ObjectHideFlags: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   _shootPoint: {fileID: 2858590457456227942}
   _cameraConfiner: {fileID: 0}
   _wallAnimator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   _charonShot: {fileID: 1424242346236093898, guid: a2dc0a35500374245b98bce8c7de105a,
     type: 3}
   _bossExplosionPrefab: {fileID: 6635095658023406420, guid: 205c62cde26eaee438897edcf6f62328,

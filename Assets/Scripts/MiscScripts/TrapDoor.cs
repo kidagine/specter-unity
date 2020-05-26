@@ -3,11 +3,13 @@
 public class TrapDoor : MonoBehaviour
 {
 	[SerializeField] private Animator _animator = default;
+	[SerializeField] private EntityAudio _doorAudio = default;
 	[SerializeField] private Vector2 _promptOffset = default;
 
 
 	public void OpenDoor()
 	{
+		_doorAudio.Play("DoorOpen");
 		_animator.SetTrigger("Open");
 	}
 

@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody = default;
     [SerializeField] private BoxCollider2D _boxCollider = default;
     [SerializeField] private BoxCollider2D _dashCollider = default;
-    [SerializeField] private CircleCollider2D _cicleCollider = default;
     [SerializeField] private SpriteRenderer _spriteRenderer = default;
     [SerializeField] private Transform _groundCheckPoint = default;
     [SerializeField] private Transform _meleePoint = default;
@@ -23,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private EntityAudio _playerAudio = default;
     [SerializeField] private PlayerAim _playerAim = default;
     [SerializeField] private LayerMask _environmentLayerMask = default;
-    public Transform point;
     private readonly float _maximumFootstepCooldown = 0.3f;
     private readonly float _maximumJumpCooldown = 0.15f;
     private readonly int _moveSpeed = 5;
@@ -177,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
             _boxCollider.enabled = false;
             _dashCollider.enabled = true;
             IsDashing = true;
-           transform.up = dashDirection;
+            transform.up = dashDirection;
             _rigidbody.AddForce(dashDirection * _dashImpulse ,ForceMode2D.Impulse);
             Instantiate(_dashEffectPrefab, transform.position, transform.rotation);
             _playerAim.SetDashToObjectToNull();
@@ -220,7 +218,6 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("IsDashLocked", false);
         _boxCollider.enabled = true;
         _dashCollider.enabled = false;
-        _cicleCollider.enabled = true;
         IsDashing = false;
     }
 

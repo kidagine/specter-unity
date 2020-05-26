@@ -4,6 +4,7 @@ public class BossCinematicSystem : MonoBehaviour
 {
     [SerializeField] private Animator _animator = default;
     [SerializeField] private BossUI _bossUI = default;
+    [SerializeField] private EntityAudio _charonAudio = default;
     [SerializeField] private Charon _charon = default;
     [SerializeField] private PlayerCinematic _playerCinematicSystem = default;
 
@@ -24,9 +25,15 @@ public class BossCinematicSystem : MonoBehaviour
 
     public void StartBossFight()
     {
+        _charonAudio.Play("CharonLoopMusic");
         _bossUI.BossHealthUI.ShowHealth(true);
         _playerCinematicSystem.PlayerCinematicPause(false);
         _animator.enabled = true;
         _charon.enabled = true;
+    }
+
+    public void PlayBossIntroSound()
+    {
+        _charonAudio.Play("CharonIntroMusic");
     }
 }

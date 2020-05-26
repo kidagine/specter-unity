@@ -19,8 +19,13 @@ public class BossTitleUI : MonoBehaviour
         _bossCinematicSystem.StartBossFight();
     }
 
-    public void DisableBossCamera()
+    public void DisableBossCameraAnimationEvent()
     {
         _bossCamera.SetActive(false);
+    }
+
+    public void PlayBossIntroSoundAnimationEvent()
+    {
+        _bossCinematicSystem.PlayBossIntroSound();
     }
 }

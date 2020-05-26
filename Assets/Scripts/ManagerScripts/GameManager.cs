@@ -2,9 +2,8 @@
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Player _player = default;
+    [SerializeField] private PlayerLevelSystem _playerLevelSystem = default;
 
-	public Player Player { get { return _player; } private set { } }
 	public static GameManager Instance { get; private set; }
 
 
@@ -25,5 +24,10 @@ public class GameManager : MonoBehaviour
 		{
 			Instance = this;
 		}
+	}
+
+	public void GivePlayerExp(int exp)
+	{
+		_playerLevelSystem.EarnExp(exp);
 	}
 }

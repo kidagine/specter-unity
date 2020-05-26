@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
+public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver, IExpGiver
 {
     [SerializeField] private Damager _damager;
     [SerializeField] private GameObject _explosionPrefab = default;
@@ -14,11 +14,13 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
     [SerializeField] private Rigidbody2D _rigidbody = default;
     [SerializeField] private Transform _rightCheckGroundPoint = default;
     [SerializeField] private Transform _leftCheckGroundPoint = default;
+    [SerializeField] private EntityAudio _wizardKnightAudio = default;
     [SerializeField] private LayerMask _environmentLayerMask = default;
     [SerializeField] private float _moveSpeed = 2;
     [SerializeField] private bool _startOnLeft = default;
     [SerializeField] private bool _isUpsideDown = default;
     private readonly int _checkDistanceRay = 1;
+    private readonly int _expWorth = 10;
     private Transform _player;
     private int _currentHealth = 1;
     private bool _isLookingRight;
@@ -48,6 +50,7 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
         {
             if (!_isCharging && _canAttack)
             {
+                _wizardKnightAudio.Play("WizardKnightCharge");
                 Vector2 direction = _player.position - transform.position;
                 if (direction.x > 0)
                 {
@@ -100,6 +103,7 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
         _currentHealth -= damageAmount;
         if (_currentHealth <= 0)
         {
+            GiveExp();
             _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             _mainCollider.enabled = false;
             _spearCollider.enabled = false;
@@ -133,7 +137,7 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
 
     private void CheckGround()
     {
-        RaycastHit2D rightHit = Physics2D.Raycast(_rightCheckGroundPoint.position, -_rightCheckGroundPoint.up, _checkDistanceRay);
+        RaycastHit2D rightHit = Physics2D.Raycast(_rightCheckGroundPoint.position, -_rightCheckGroundPoint.up, _checkDistanceRay, _environmentLayerMask);
         if (rightHit.collider == null)
         {
             if (_checkOnRight)
@@ -149,7 +153,7 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
                 _checkOnRight = true;
             }
         }
-        RaycastHit2D leftHit = Physics2D.Raycast(_leftCheckGroundPoint.position, -_leftCheckGroundPoint.up, _checkDistanceRay);
+        RaycastHit2D leftHit = Physics2D.Raycast(_leftCheckGroundPoint.position, -_leftCheckGroundPoint.up, _checkDistanceRay, _environmentLayerMask);
         if (leftHit.collider == null)
         {
             if (_checkOnLeft)
@@ -196,5 +200,10 @@ public class WizardKnight : MonoBehaviour, IDamageable, ITargetObserver
                 _spriteRenderer.flipX = _isLookingRight;
             }
         }
+    }
+
+    public void GiveExp()
+    {
+        GameManager.Instance.GivePlayerExp(_expWorth);
     }
 }

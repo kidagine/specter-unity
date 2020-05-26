@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class TheWall : MonoBehaviour, IDamageable, ITargetObserver
+public class TheWall : MonoBehaviour, IDamageable, ITargetObserver, IExpGiver
 {
 	[SerializeField] private GameObject _shot = default;
 	[SerializeField] private GameObject _explosionPrefab = default;
 	[SerializeField] private Transform _shootPoint = default;
+	[SerializeField] private Animator _animator = default;
 	[SerializeField] private SpriteRenderer _spriteRenderer = default;
+	[SerializeField] private EntityAudio _theWallAudio = default;
+	private readonly int _expWorth = 15;
 	private Transform _playerPosition;
 	private Color _normalColor;
 	private Color _hurtColor;
@@ -17,25 +20,28 @@ public class TheWall : MonoBehaviour, IDamageable, ITargetObserver
 	{
 		ColorUtility.TryParseHtmlString("#ff175c", out _hurtColor);
 		ColorUtility.TryParseHtmlString("#ffffff", out _normalColor);
-		StartCoroutine(ShootPatternCoroutine());
 	}
 
 	void Update()
 	{
 		if (_playerPosition != null)
 		{
+			_animator.SetBool("HasTarget", true);
 			_shootPoint.up = _playerPosition.position - transform.position;
 		}
 	}
 
-	IEnumerator ShootPatternCoroutine()
+	public void ShootAnimationEvent()
 	{
-		yield return new WaitForSeconds(3.0f);
 		if (_playerPosition != null)
 		{
 			Instantiate(_shot, _shootPoint.position, _shootPoint.rotation);
 		}
-		StartCoroutine(ShootPatternCoroutine());
+	}
+
+	public void ChargeAnimationEvent()
+	{
+		_theWallAudio.Play("TheWallCharge");
 	}
 
 	public void TakeDamage(int damageAmount, GameObject damagerObject)
@@ -44,6 +50,7 @@ public class TheWall : MonoBehaviour, IDamageable, ITargetObserver
 		_currentHealth -= damageAmount;
 		if (_currentHealth <= 0)
 		{
+			GiveExp();
 			Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
@@ -64,5 +71,10 @@ public class TheWall : MonoBehaviour, IDamageable, ITargetObserver
 	public void LostTarget()
 	{
 		_playerPosition = null;
+	}
+
+	public void GiveExp()
+	{
+		GameManager.Instance.GivePlayerExp(_expWorth);
 	}
 }

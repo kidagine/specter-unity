@@ -55,7 +55,7 @@ public class SpikeCrawler : MonoBehaviour
 
     private void CheckGround()
     {
-        RaycastHit2D rightHit = Physics2D.Raycast(_rightCheckGroundPoint.position, -_rightCheckGroundPoint.up, _checkDistanceRay);
+        RaycastHit2D rightHit = Physics2D.Raycast(_rightCheckGroundPoint.position, -_rightCheckGroundPoint.up, _checkDistanceRay, _environmentLayerMask);
         if (rightHit.collider == null)
         {
             if (_checkOnRight)
@@ -71,7 +71,7 @@ public class SpikeCrawler : MonoBehaviour
                 _checkOnRight = true;
             }
         }
-        RaycastHit2D leftHit = Physics2D.Raycast(_leftCheckGroundPoint.position, -_leftCheckGroundPoint.up, _checkDistanceRay);
+        RaycastHit2D leftHit = Physics2D.Raycast(_leftCheckGroundPoint.position, -_leftCheckGroundPoint.up, _checkDistanceRay, _environmentLayerMask);
         if (leftHit.collider == null)
         {
             if (_checkOnLeft)

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 418517136222800376}
   - component: {fileID: 418517136222800380}
   - component: {fileID: 418517136222800354}
+  - component: {fileID: 7774163164296020312}
   m_Layer: 10
   m_Name: WizardKnight_minion
   m_TagString: Untagged
@@ -161,11 +162,13 @@ MonoBehaviour:
   _rigidbody: {fileID: 418517136222800354}
   _rightCheckGroundPoint: {fileID: 418517135834593888}
   _leftCheckGroundPoint: {fileID: 418517136877734126}
+  _wizardKnightAudio: {fileID: 7774163164296020312}
   _environmentLayerMask:
     serializedVersion: 2
     m_Bits: 256
   _moveSpeed: 2
   _startOnLeft: 1
+  _isUpsideDown: 0
 --- !u!50 &418517136222800354
 Rigidbody2D:
   serializedVersion: 4
@@ -187,6 +190,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7774163164296020312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418517136222800381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a543ff1bf74ce1e42a76af877dbc9297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 28858b9d9e89eb4448b4f68e5414b274, type: 3}
+    volume: 0.8
+    pitch: 1
+    name: WizardKnightCharge
+    loop: 0
+    playOnAwake: 0
+  _soundGroups: []
 --- !u!1 &418517136793246587
 GameObject:
   m_ObjectHideFlags: 0

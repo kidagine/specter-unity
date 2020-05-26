@@ -12,7 +12,7 @@ public class CinematicTextSystem : MonoBehaviour
 	void Start()
     {
 		StartCoroutine(ChangeTextCoroutine());
-    }
+	}
 
 	IEnumerator ChangeTextCoroutine()
 	{

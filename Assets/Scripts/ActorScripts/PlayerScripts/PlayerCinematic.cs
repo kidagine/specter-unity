@@ -57,6 +57,10 @@ public class PlayerCinematic : MonoBehaviour
 	public void WokeUpAnimationEvent()
 	{
 		PlayerCinematicPause(false);
+		if (GlobalSettings._hasDash)
+		{
+			_points.SetActive(true);
+		}
 	}
 
 	public void PlayerCinematicPause(bool state)

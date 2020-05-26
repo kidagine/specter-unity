@@ -167,7 +167,7 @@ MonoBehaviour:
   _sounds:
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: 3115daa335fd1e345907fd12f950a7ba, type: 3}
-    volume: 0.7
+    volume: 0.5
     pitch: 1
     name: PlayerShotExplosion
     loop: 0

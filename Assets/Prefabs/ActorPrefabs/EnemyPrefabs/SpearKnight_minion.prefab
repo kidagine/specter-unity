@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 5799178591064678888}
   - component: {fileID: 3569452952117484359}
   - component: {fileID: 5799178591064678898}
+  - component: {fileID: 5642027574980237666}
   m_Layer: 10
   m_Name: SpearKnight_minion
   m_TagString: Untagged
@@ -339,6 +340,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 5799178591064678898}
   _rightCheckGroundPoint: {fileID: 5799178591717102192}
   _leftCheckGroundPoint: {fileID: 5799178592811114750}
+  _entityAudio: {fileID: 5642027574980237666}
   _environmentLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -365,6 +367,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5642027574980237666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799178591064678893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a543ff1bf74ce1e42a76af877dbc9297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c8e802469ae72954a9bfab1799f64f5f, type: 3}
+    volume: 0.2
+    pitch: 1
+    name: SpearKnightAlert
+    loop: 0
+    playOnAwake: 0
+  _soundGroups: []
 --- !u!1 &5799178591717102199
 GameObject:
   m_ObjectHideFlags: 0

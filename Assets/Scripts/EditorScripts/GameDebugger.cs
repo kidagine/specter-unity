@@ -1,6 +1,7 @@
 ﻿#if (UNITY_EDITOR) 
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDebugger : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class GameDebugger : MonoBehaviour
             {
                 NextCheckpoint();
             }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RestartScene();
+            }
         }
     }
 
@@ -71,6 +76,11 @@ public class GameDebugger : MonoBehaviour
     {
         _currentAreaText.text = CheckpointManager.Instance.GetCurrentCheckpoint().AreaName;
         _nextAreaText.text = CheckpointManager.Instance.GetNextCheckpoint().AreaName;
+    }
+
+    private void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnEnable()
