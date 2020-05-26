@@ -13,7 +13,7 @@ public class TheWall : MonoBehaviour, IDamageable, ITargetObserver, IExpGiver
 	private Transform _playerPosition;
 	private Color _normalColor;
 	private Color _hurtColor;
-	private int _currentHealth = 30;
+	private int _currentHealth = 20;
 
 
 	void Start()
