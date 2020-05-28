@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody = default;
     [SerializeField] private BoxCollider2D _boxCollider = default;
     [SerializeField] private BoxCollider2D _dashCollider = default;
+    [SerializeField] private CircleCollider2D _circleCollider = default;
     [SerializeField] private SpriteRenderer _spriteRenderer = default;
     [SerializeField] private Transform _groundCheckPoint = default;
     [SerializeField] private Transform _meleePoint = default;
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isMovementLocked;
     private bool _isRotationLocked;
     private bool _isSpriteFlipped;
+    private bool _isOnFloor = true;
 
     public bool IsGrounded { get; private set; }
     public bool IsDashing { get; set; }
@@ -44,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounded();
         HandleSpriteFlip();
         Footsteps();
+        CheckDash();
     }
 
     void FixedUpdate()
@@ -62,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckGrounded()
     {
-        Vector2 boxSize = new Vector2(_boxCollider.bounds.size.x, 0.15f);
+        Vector2 boxSize = new Vector2(_boxCollider.bounds.size.x - 0.5f, 0.1f);
         if (Physics2D.OverlapBox(_groundCheckPoint.position, boxSize, 0.0f, _environmentLayerMask))
         {
             if (!IsGrounded)
@@ -179,15 +183,19 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody.AddForce(dashDirection * _dashImpulse ,ForceMode2D.Impulse);
             Instantiate(_dashEffectPrefab, transform.position, transform.rotation);
             _playerAim.SetDashToObjectToNull();
+            _circleCollider.enabled = false;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void CheckDash()
     {
-        if (collision.gameObject.CompareTag("Dashable"))
+        if (IsDashing)
         {
-            Vector2 contactPoint = collision.contacts[0].normal;
-            AttachToSurface(contactPoint);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 1f, _environmentLayerMask);
+            if (hit.collider != null)
+            {
+                AttachToSurface(hit.normal);
+            }
         }
     }
 
@@ -196,13 +204,15 @@ public class PlayerMovement : MonoBehaviour
         if (IsDashing)
         {
             ResetPlayerMovement();
-            if (contactPoint == new Vector2(0.0f, 1.0f))
+            if (contactPoint == Vector2.up)
             {
+                _isOnFloor = true;
                 LockMovement(false);
                 _rigidbody.gravityScale = 3.0f;
             }
             else
             {
+                _isOnFloor = false;
                 _animator.SetBool("IsGrounded", true);
                 LockMovement(true);
                 _rigidbody.gravityScale = 0.0f;
@@ -217,6 +227,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("IsDashing", false);
         _animator.SetBool("IsDashLocked", false);
         _boxCollider.enabled = true;
+        _circleCollider.enabled = true;
         _dashCollider.enabled = false;
         IsDashing = false;
     }
@@ -257,12 +268,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (state)
         {
+            _animator.SetFloat("Movement", 0.0f);
             _isMovementLocked = true;
             _rigidbody.velocity = Vector2.zero;
         }
-        else
+        else 
         {
-            _isMovementLocked = false;
+            if (_isOnFloor)
+            {
+                _isMovementLocked = false;
+            }
         }
     }
 

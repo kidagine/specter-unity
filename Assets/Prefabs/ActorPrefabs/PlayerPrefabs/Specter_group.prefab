@@ -455,7 +455,7 @@ MonoBehaviour:
   _playerUI: {fileID: 0}
   _player: {fileID: 4039438922809237083}
   _rigidbody: {fileID: 4039438922809237086}
-  _playerMovement: {fileID: 4039438922809237094}
+  _playerInputSystem: {fileID: 0}
   _trapDoor: {fileID: 0}
   _hasEnteredRoom: 0
 --- !u!1 &4039438922423274133
@@ -633,7 +633,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02032417, y: 0.5249872}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -644,7 +644,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.33965993, y: 0.25128913}
+  m_Size: {x: 0.05, y: 0.2}
   m_EdgeRadius: 0
 --- !u!58 &4039438922809237073
 CircleCollider2D:
@@ -707,6 +707,7 @@ MonoBehaviour:
     type: 3}
   _deathEffectPrefab: {fileID: 6119618662938653583, guid: c9b3e8f4fe8d2cf4080d2a173ed4451e,
     type: 3}
+  _spriteRenderer: {fileID: 0}
   _playerMovement: {fileID: 4039438922809237094}
   _playerInputSystem: {fileID: 4039438922809237082}
   _playerUI: {fileID: 0}
@@ -728,7 +729,9 @@ MonoBehaviour:
   _rigidbody: {fileID: 4039438922809237086}
   _boxCollider: {fileID: 4039438922809237087}
   _dashCollider: {fileID: 4039438922809237084}
+  _circleCollider: {fileID: 0}
   _spriteRenderer: {fileID: 4039438922203162483}
+  _emulatedPlayer: {fileID: 4039438922203162495}
   _groundCheckPoint: {fileID: 4039438922605530566}
   _meleePoint: {fileID: 4039438922679589870}
   _inventoryPoint: {fileID: 4039438921128619115}
@@ -754,6 +757,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2dbcef0abe0df44c8c0c07c285ec9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelStats: {fileID: 0}
+  _playerUI: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!114 &4039438922809237081
 MonoBehaviour:
   m_ObjectHideFlags: 0

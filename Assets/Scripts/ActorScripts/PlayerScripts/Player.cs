@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private PlayerAim _playerAim = default;
     [SerializeField] private EntityAudio _playerAudio = default;
     private readonly float _meleeAttackCooldown = 0.3f;
-    private readonly float _invisibilityFrames = 0.17f;
+    private readonly float _invisibilityFrames = 0.2f;
     private readonly int _invisibilityRepeat = 4;
     private int _maxHearts;
     private int _currentHealth;
@@ -83,13 +83,13 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (_isChargingShot)
         {
-            _playerAudio.Stop("PlayerChargeShot");
             _playerAudio.Play("PlayerShot");
             _animator.SetTrigger("Shoot");
             Instantiate(_shotImpactEffectPrefab, _firePoint.position, _firePoint.rotation);
             Damager damager = Instantiate(_shotEffectPrefab, _firePoint.position, _firePoint.rotation).GetComponent<Damager>();
             damager._damageAmount = _attack;
         }
+        _playerAudio.Stop("PlayerChargeShot");
         _animator.SetBool("IsCharging", false);
         _playerMovement.LockMovement(false);
         _isChargingShot = false;
@@ -122,6 +122,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         _playerAudio.Play("PlayerDie");
         _animator.SetTrigger("Die");
+        _playerInputSystem.enabled = false;
         _playerMovement.LockMovement(true);
         Vector2 _playerHeadPosition = new Vector2(transform.position.x + 0.22f, transform.position.y + 1.18f);
         Instantiate(_deathEffectPrefab, _playerHeadPosition, transform.rotation);

@@ -26887,6 +26887,17 @@ PrefabInstance:
       propertyPath: _hasEnteredRoom
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4039438922203162494, guid: f6460d10f7938c44ea0393fd879e1fc4,
+        type: 3}
+      propertyPath: _dashEffectPrefab
+      value: 
+      objectReference: {fileID: 7870263167371624666, guid: a832e71ca0ec65b408240a838f8c08c8,
+        type: 3}
+    - target: {fileID: 4039438922203162494, guid: f6460d10f7938c44ea0393fd879e1fc4,
+        type: 3}
+      propertyPath: _playerInputSystem
+      value: 
+      objectReference: {fileID: 4039438922762517371}
     - target: {fileID: 4039438922203162495, guid: f6460d10f7938c44ea0393fd879e1fc4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26957,6 +26968,11 @@ PrefabInstance:
       propertyPath: _cicleCollider
       value: 
       objectReference: {fileID: 1604258600}
+    - target: {fileID: 4039438922809237094, guid: f6460d10f7938c44ea0393fd879e1fc4,
+        type: 3}
+      propertyPath: _circleCollider
+      value: 
+      objectReference: {fileID: 1604258600}
     - target: {fileID: 4039438922809237095, guid: f6460d10f7938c44ea0393fd879e1fc4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26995,5 +27011,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2dbcef0abe0df44c8c0c07c285ec9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4039438922762517371 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4039438922809237082, guid: f6460d10f7938c44ea0393fd879e1fc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 4039438922762517369}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd98872aa5a7ea8439efc7f5bf131408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

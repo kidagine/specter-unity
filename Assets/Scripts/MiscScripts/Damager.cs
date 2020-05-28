@@ -9,7 +9,7 @@ public class Damager : MonoBehaviour
     public event Action _hitTarget;
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.gameObject.layer) & _damageableLayer) != 0)
         {

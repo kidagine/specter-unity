@@ -9,7 +9,7 @@ public class PlayerCinematic : MonoBehaviour
 	[SerializeField] private PlayerUI _playerUI = default;
 	[SerializeField] private Player _player = default;
 	[SerializeField] private Rigidbody2D _rigidbody = default;
-	[SerializeField] private PlayerMovement _playerMovement = default;
+	[SerializeField] private PlayerInputSystem _playerInputSystem = default;
 	[SerializeField] private TrapDoor _trapDoor = default;
 	[SerializeField] private bool _hasEnteredRoom = default;
 
@@ -69,13 +69,13 @@ public class PlayerCinematic : MonoBehaviour
 		{
 			_player.IsAttacking = true;
 			_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-			_playerMovement.LockMovement(true);
+			_playerInputSystem.enabled = false;
 		}
 		else
 		{
 			_player.IsAttacking = false;
 			_rigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-			_playerMovement.LockMovement(false);
+			_playerInputSystem.enabled = true;
 		}
 	}
 }
